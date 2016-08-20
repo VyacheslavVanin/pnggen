@@ -8,13 +8,14 @@ def randomColor():
 
 
 def genImage(filename):
-    minSize = 12
-    maxSize = 300
+    minSize = 8
+    maxSize = 16
 
-    width = random.randint(minSize, maxSize)
-    height = random.randint(minSize, maxSize)
+    width = random.randint(minSize, maxSize) * 8
+    height = random.randint(minSize, maxSize) * 8
 
-    im = MyImage(width, height, bgcolor=randomColor())
+    im = MyImage(width, height, bgcolor=(1,1,1,0))
+    im.draw_rectangle(0,0, width-1, height, color = randomColor());
 
     points1 = [(0, 0), (width,height)]
     points2 = [(width, 0), (0, height)]
