@@ -7,15 +7,12 @@ def randomColor():
     return (random.uniform(0,1), random.uniform(0,1), random.uniform(0,1))
 
 
-def genImage(filename):
-    minSize = 8
-    maxSize = 16
-
-    width = random.randint(minSize, maxSize) * 8
-    height = random.randint(minSize, maxSize) * 8
+def make_random_rectangle(filename, min_size=8, max_size=8):
+    width = random.randint(min_size, max_size) * 8
+    height = random.randint(min_size, max_size) * 8
 
     im = MyImage(width, height, bgcolor=(1,1,1,0))
-    im.draw_rectangle(0,0, width-1, height, color = randomColor());
+    im.draw_rectangle(0,0, width-1, height, color=randomColor());
 
     points1 = [(0, 0), (width,height)]
     points2 = [(width, 0), (0, height)]
@@ -25,11 +22,11 @@ def genImage(filename):
     im.write_png(filename)
 
 
-def main():
+def make_random_squares():
     args = sys.argv
     numImages = int(args[1])
     for i in range(numImages):
-        genImage("images/image{}.png".format(i))
+        make_random_rectangle("images/image{}.png".format(i))
 
 
 if __name__ == "__main__":
